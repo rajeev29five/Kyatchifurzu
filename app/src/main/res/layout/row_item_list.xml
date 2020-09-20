@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:paddingRight="5dp"
+        app:tint="@color/colorBlack"
+        android:src="@drawable/ic_headphone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="70"
+        android:paddingLeft="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_audio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="file.mp3"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/text_anime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:paddingLeft="4dp"
+            android:text="Anime : "
+            android:textColor="@color/colorBlack" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/button_play"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_weight="15"
+        android:layout_gravity="center"
+        app:tint="@color/colorBlack"
+        android:src="@drawable/ic_action_play"/>
+
+    <ImageView
+        android:id="@+id/button_options"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_weight="15"
+        android:layout_gravity="center"
+        app:tint="@color/colorBlack"
+        android:src="@drawable/ic_action_more_options"/>
+
+</LinearLayout>
