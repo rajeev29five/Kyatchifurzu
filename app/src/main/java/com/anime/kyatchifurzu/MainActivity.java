@@ -1,11 +1,9 @@
 package com.anime.kyatchifurzu;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -15,14 +13,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
         Field fields[] = R.raw.class.getFields();
         final List<AudioFileEntity> audioFile = fetchAudioData(fields);
 
-        mRecyclerViewAdapter = new AudioListAdapter(audioFile, new ClickListener() {
+        mRecyclerViewAdapter = new AudioListAdapter(audioFile/*, new ClickListener() {
 
             @Override
             public void onPositionClickListener(View view, int position) {
                 if(view.getId() == R.id.button_play) {
+                    stopPlaying(view);
                     mMediaPlayer = MediaPlayer.create(getApplicationContext(), audioFile.get(position).getResourceId());
                     mMediaPlayer.start();
                 } else if(view.getId() == R.id.button_options) {
@@ -63,9 +57,18 @@ public class MainActivity extends AppCompatActivity {
             public void onLongClickListener(int position) {
 
             }
-        });
+        }*/);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
+    }
+
+    private void stopPlaying(View view) {
+
+        if(mMediaPlayer != null) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 
     private List<AudioFileEntity> fetchAudioData(Field[] fields) {
@@ -74,12 +77,10 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0 ; i<fields.length; i++)
         {
             AudioFileEntity _audioFile = new AudioFileEntity();
-            Log.d("TAG=====>", AudioDetails.valueOf(fields[i].getName().toUpperCase()).getAudioDetails());
-            _audioFile.setName(AudioDetails.valueOf(fields[i].getName().toUpperCase()).getAudioDetails());
+            _audioFile.setName(AudioDetailsEnum.valueOf(fields[i].getName().toUpperCase()).getAudioDetails());
             _audioFile.setResourceId(getResources().getIdentifier(fields[i].getName(), "raw", getPackageName()));
             audioFile.add(_audioFile);
         }
-        Log.d("TAG--->", audioFile.toString());
         return audioFile;
     }
 
@@ -94,13 +95,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(mMediaPlayer != null) {
-            mMediaPlayer.release();
-        }
-    }
-    
 }
