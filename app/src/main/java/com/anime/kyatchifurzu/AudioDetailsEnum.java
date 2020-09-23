@@ -2,13 +2,14 @@ package com.anime.kyatchifurzu;
 
 public enum AudioDetailsEnum {
 
-    DATTEBAYO("Dattebayo Naruto:Naruto"),
-    NARUTOKUN("Naruto-kun Hinata:Naruto"),
-    NIUHUHU("Niu-hu-hu Koro-sensei:Assassination classroom"),
+    DATTEBAYO("Dattebayo:Naruto"),
+    NARUTOKUN("Naruto-kun:Naruto"),
+    NICONICONII("Nico Nico Nii:Love Live! School Idol Project"),
+    NIUHUHU("Niu-hu-hu:Assassination classroom"),
     TUTURU("Tuturu:Steins Gate"),
     YOOOOO("Yooooo:UNKNOWN"),
     YOOOOO_FULL("Yooooo Full:UNKNOWN"),
-    YOYOI("Yoyoi Kumadori:One Piece");
+    YOYOI("Yoyoi:One Piece");
 
     private String audioDetails;
 
